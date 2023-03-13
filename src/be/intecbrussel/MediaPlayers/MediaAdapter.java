@@ -6,9 +6,9 @@ public class MediaAdapter implements MediaPlayer {
 
     public MediaAdapter(String audioType) {
         if (audioType.equalsIgnoreCase("mp4")) {
-            setAdvancedMusicPlayer(new Mp4Player());
+            advancedMusicPlayer = new Mp4Player();
         } else if (audioType.equalsIgnoreCase("vlc")){
-            setAdvancedMusicPlayer(new VlcPlayer());
+            advancedMusicPlayer = new VlcPlayer();
         }
     }
 
