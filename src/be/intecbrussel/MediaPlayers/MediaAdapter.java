@@ -2,13 +2,15 @@ package be.intecbrussel.MediaPlayers;
 
 public class MediaAdapter implements MediaPlayer {
 
-    protected AdvancedMediaPlayer advancedMusicPlayer;
+    AdvancedMediaPlayer advancedMusicPlayer;
 
     public MediaAdapter(String audioType) {
         if (audioType.equalsIgnoreCase("mp4")) {
             advancedMusicPlayer = new Mp4Player();
         } else if (audioType.equalsIgnoreCase("vlc")){
             advancedMusicPlayer = new VlcPlayer();
+        } else {
+            advancedMusicPlayer = new Mp4Player();
         }
     }
 
@@ -16,15 +18,11 @@ public class MediaAdapter implements MediaPlayer {
         return advancedMusicPlayer;
     }
 
-    public void setAdvancedMusicPlayer(AdvancedMediaPlayer advancedMusicPlayer) {
-        this.advancedMusicPlayer = advancedMusicPlayer;
-    }
-
     @Override
     public void play(String audioType, String fileName) {
-        if (advancedMusicPlayer instanceof Mp4Player) {
+        if (audioType.equalsIgnoreCase("mp4")) {
             advancedMusicPlayer.playMp4(fileName);
-        } else if (advancedMusicPlayer instanceof VlcPlayer) {
+        } else if (audioType.equalsIgnoreCase("vlc")) {
             advancedMusicPlayer.playVlc(fileName);
         }
     }
